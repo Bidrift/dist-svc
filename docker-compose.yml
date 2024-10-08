@@ -10,6 +10,7 @@ services:
       POSTGRES_DB: user_db
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
+      JWT_SECRET: "nOEhg3+P/q7VCz6K7PhXywTnrF0+G/IGpDeXbGtZuDQ="
     depends_on:
       - db
     restart: always
