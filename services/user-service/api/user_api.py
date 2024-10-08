@@ -4,7 +4,7 @@ from business.user_business import register_user, check_user_exists
 user_api = Blueprint('user_api', __name__)
 
 @user_api.route('/register', methods=['POST'])
-def register_user():
+def register():
     data = request.json
     if 'username' not in data:
         return jsonify({"error": "Invalid request"}), 400
