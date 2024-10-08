@@ -31,8 +31,22 @@ services:
     ports:
       - "5001:5001"
     restart: always
+    environment:
+      MONGO_URI: mongodb://message-db:27017/messagesdb
     depends_on:
+      - message-db
       - user-service
+    
+  message-db:
+    image: mongo:latest
+    container_name: message-db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo-data:/data/db
 
   like-service:
     build: ./services/like-service
@@ -44,3 +58,4 @@ services:
 
 volumes:
   postgres_data:
+  mongo-data:
