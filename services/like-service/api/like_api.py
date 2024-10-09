@@ -34,8 +34,3 @@ def like():
         return jsonify(response), 200
     else:
         return jsonify(response), 400
-    
-@like_api.route('/feed', methods=['GET'])
-def get_feed():
-    result = get_feed_logic()
-    return jsonify(result), 200

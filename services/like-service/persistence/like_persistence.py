@@ -28,21 +28,13 @@ def insert_like(username, message_id, date):
     return True
     
 def increment_likes(message_id):
-    # Increment the likes count for the specified message in the messages collection
-    result = list(messages_collection.find(
-        {"_id": ObjectId(message_id)}
-    ))
-    
-    print(result)
-    
-    # Check if the message was found and updated
-    # if result.modified_count == 1:
-    #     return True
-    # else:
-    #     return False
-
-def fetch_latest_messages():
-    messages = list(likes_collection.find().sort('_id', -1).limit(10))
-    for message in messages:
-        message['_id'] = str(message['_id'])
-    return messages
+    try:
+        result = messages_collection.update_one(
+            {'_id': ObjectId(message_id)},
+            {'$inc': {'likes': 1}}
+        )
+        if result.modified_count == 0:
+            return {"success": False, "error": "Message not found"}
+        return {"success": True, "message": "Message liked"}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
