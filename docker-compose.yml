@@ -31,14 +31,13 @@ services:
     ports:
       - "5001:5001"
     restart: always
-    environment:
-      MONGO_URI: mongodb://message-db:27017/messagesdb
     depends_on:
       - message-db
       - user-service
     
   message-db:
     image: mongo:latest
+    command: ["mongod", "--quiet"]
     container_name: message-db
     ports:
       - "27017:27017"
@@ -54,7 +53,8 @@ services:
       - "5002:5002"
     restart: always
     depends_on:
-      - message-service
+      - user-service
+      - message-db
 
 volumes:
   postgres_data:
