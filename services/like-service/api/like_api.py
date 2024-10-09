@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from business.like_business import like_message, get_feed_logic
+from business.like_business import like_message
 import requests
 
 like_api = Blueprint('like_api', __name__)

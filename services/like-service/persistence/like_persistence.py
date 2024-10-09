@@ -1,11 +1,10 @@
-from pymongo import MongoClient, ReturnDocument
+from pymongo import MongoClient
 from bson.objectid import ObjectId
 
 mongo_username = "root"
 mongo_password = "example"
 mongo_host = "message-db"
 mongo_port = 27017
-# Configure your MongoDB connection
 mongo_uri = f"mongodb://{mongo_username}:{mongo_password}@{mongo_host}:{mongo_port}/?authSource=admin"
 
 client = MongoClient(mongo_uri)
