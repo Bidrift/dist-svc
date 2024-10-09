@@ -1,6 +1,7 @@
 import jwt
 import datetime
 import os
+from flask import jsonify
 from persistence.user_persistence import add_user, find_user
 
 SECRET_KEY = os.getenv('JWT_SECRET', 'default_secret')
@@ -29,11 +30,11 @@ def generate_token(username):
 def verify_token(token):
     try:
         decoded_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-        return decoded_token["username"]
+        return jsonify({"username": decoded_token["username"]}), 200
     except jwt.ExpiredSignatureError:
-        return None
+        return jsonify({"error": "Expired token"}), 403
     except jwt.InvalidTokenError:
-        return None
+        return jsonify({"error": "Invalid token"}), 403
 
 def check_user_exists(username):
     return find_user(username) is not None

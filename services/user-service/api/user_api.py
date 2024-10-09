@@ -40,8 +40,4 @@ def verify():
         return jsonify({"error": "Missing token"}), 401
 
     token = auth_header.split()[1]
-    username = verify_token(token)
-    if username:
-        return jsonify({"username": username}), 200
-    else:
-        return jsonify({"error": "Invalid or expired token"}), 403
+    return verify_token(token)
