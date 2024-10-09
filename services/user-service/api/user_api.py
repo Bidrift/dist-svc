@@ -9,7 +9,7 @@ def register():
     if 'username' not in data:
         return jsonify({"error": "Invalid request"}), 400
     token, registered = register_user(data['username'])
-    if register:
+    if registered:
         return jsonify({"token": token}), 201
     else:
         return jsonify({"error": "Username already exists"}), 400
