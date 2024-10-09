@@ -27,15 +27,3 @@ def fetch_latest_messages():
     for message in messages:
         message['_id'] = str(message['_id'])
     return messages
-
-def increment_likes(message_id):
-    try:
-        result = messages_collection.update_one(
-            {'_id': ObjectId(message_id)},
-            {'$inc': {'likes': 1}}
-        )
-        if result.modified_count == 0:
-            return {"error": "Message not found"}
-        return {"message": "Message liked"}
-    except Exception as e:
-        return {"error": str(e)}
