@@ -81,3 +81,11 @@ Feel free to contribute by opening issues or submitting pull requests for improv
 
 6. License
 This project is licensed under the MIT License.
+
+# Team 14
+
+- a.alexeev@innopolis.university  
+- m.gladyshev@innopolis.university  
+- n.kuzmin@innopolis.university  
+- e.davlitiarov@innopolis.university  
+- y.allala@innopolis.university
