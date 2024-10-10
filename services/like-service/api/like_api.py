@@ -8,7 +8,6 @@ USER_SERVICE_URL = 'http://user-service:5000'
 
 def verify_user(token):
     headers = {'Authorization': f'Bearer {token}'}
-    print(USER_SERVICE_URL)
     response = requests.get(f'{USER_SERVICE_URL}/verify', headers=headers)
     if response.status_code == 200:
         return response.json().get('username')
